@@ -96,6 +96,7 @@ export default function (dset) {
 		dset(input, 'constructor.prototype.hello', 'world');
 		assert.is(input.hasOwnProperty('constructor'), false);
 		assert.is(input.hasOwnProperty('hello'), false);
+		assert.is(input.constructor, Object);
 
 		assert.equal(input, {
 			// empty

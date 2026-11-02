@@ -102,6 +102,15 @@ export default function (dset) {
 		});
 	});
 
+	pollution('should ignore ["constructor"] assignment :: nested array path', () => {
+		let input = {};
+
+		dset(input, ['constructor', 'prototype', 'hello'], 'world');
+		assert.is(input.hasOwnProperty('constructor'), false);
+		assert.is(input.hasOwnProperty('hello'), false);
+		assert.equal(input, {});
+	});
+
 	// Test for CVE-2022-25645 - CWE-1321
 	pollution('should ignore JSON.parse crafted object with "__proto__" key', () => {
 		let a = { b: { c: 1 } };
